@@ -1,0 +1,46 @@
+%% Sample chapter file, for use in a thesis.
+%% Don't forget to put the \chapter{...} header onto each file.
+
+\chapter{Introduction}
+
+This thesis examines the improvement gained in translation performance by introducing lexicon information into an Attention Based Neural Machine Translation Language Model \citep{DBLP:journals/corr/BahdanauCB14}. This is achieved by jointly training the previously mentioned architecture with a Feed-Forward neural network which we will call a Lexical model \citep{DBLP:journals/corr/abs-1710-01329}. 
+This thesis focuses on the mentioned architecture because it is the current state of the art architecture for Machine Translation. This technique has shown superior results than those showed by the the previous state of the art phrase-based statistical machine translation techniques \citep{DBLP:journals/corr/abs-1709-07809}.  
+
+Recurrent Neural Language Models provide several advantages from which the most important are: 1) They can relate words that appear in similar contexts as they use word embedding to represent them, thus words that are similar would have similar embedding. 2) They are able to represent long distance dependencies since their recurrent nature allows them to model sentences of arbitrary length. 
+
+Conversely, the model also has several disadvantages: 1) They require a lot of training data to provide good results since they have a lot of trainable parameters. 2) They can not translate well out of vocabulary (OOV) words or words that appear only once in the training corpus (singleton).
+
+Since Recurrent Neural Language Models became the most widely used technique, several works have been proposed to improve their performance. Some of these approaches aim to do so by designing architectures that learn meaningful information from the data \citep*{DBLP:journals/corr/MiWI16}, ultimately reducing the algorithms' need for data, while others attempt to better handle unknown words or rare words. In this thesis we use as our baseline two current standard practices from the second described type, sub-word unit representations which is used to augment input data \citep{DBLP:journals/corr/SennrichHB15} and bilingual pre-training proposed by \citet{DBLP:journals/corr/ZophYMK16}. With this experiments we seek to answer the following questions:
+
+\begin{enumerate}
+    \itemsep0em 
+    \item Does training a Feed-Forward Neural Network jointly with the classic Encoder-Decoder architecture improves the translation quality? 
+    \item If translation is indeed improved, is it because the model actually learns from individual words as claimed by the authors?
+    \item How does the lexicon model interact with other techniques proposed to handle rare words, in particular with:
+    \begin{itemize}
+        \itemsep0em 
+        \item Byte Pair Encoding (BPE) \citep{DBLP:journals/corr/SennrichHB15}
+        \item Transfer Learning \citep{DBLP:journals/corr/ZophYMK16}
+    \end{itemize}
+\end{enumerate}
+
+
+\section{Motivation}
+
+Artificial Intelligence has shown strong performance when applied in several fields of human activities. For example, artificial intelligence applied to image recognition has been able to identify traffic signs with and error rate close to humans $\approx$ 0.2\% \citep*{DBLP:journals/corr/abs-1202-2745}. Similarly, we have seen computers beat world-champion chess player Garry
+Kasparov in a six-game match in 1997 \citep{Campbell:2002:DB:512148.512152}.
+Unlike in Image vision or playing chess, the field of Machine Translation has not yet seen this human-like performance. Nevertheless, Neural networks have provided a substantial performance boost to Machine translation; although they are still far from translations of human-like quality. 
+
+The reason why machine translation has proven to be a more complicated problem than others yields in the fact that language is very complex. This means it can not be defined by sets of rules.\textcolor{red}{Add more}
+
+Machine translation neural networks require large amounts of data to train in order to be able to generalise well. Additionally, gathering data is costly. Baring this in mind, algorithms that can generalise well with the least amount of data are desirable. 
+
+Having as example how people learn a new language, initially translating only single words and subsequently translating more complex sentences. This thesis, looks at bilingual dictionaries or lexicons aims to prove the real gain obtained by adding a Feed Forward neural network proposed by \citet{DBLP:journals/corr/BahdanauCB14} to current state of the art techniques.
+
+\section{Thesis Outline}
+
+In Chapter \ref{ch:chapter2}, in the first place we present the literature review. In it, we describe the evolution of machine translation architectures with particular interest in the language model that we used in our experiments, the Recurrent Neural Network Language Model. Then, we describe the techniques we used as our baseline in the experimentation phase, presented by \citet{DBLP:journals/corr/SennrichHB15} and \citet{DBLP:journals/corr/ZophYMK16}. to address the translation problem we seek to address with the Lexical model. 
+
+Chapter \ref{ch:chapter3} presents a thorough description of the lexical model. In section \ref{sec:datasets}, we describe the data sets used to train and evaluate the Language Model which include the TED data set \citep{TIEDEMANN12.463} and the news. In section \ref{sec:experimentdesign} we describe the experimental configuration used to incorporate the lexical model. Finally, we present the results from the experiments and their analysis.
+
+Finally, Chapter \ref{ch:chapter4} presents the conclusions and describe future work.

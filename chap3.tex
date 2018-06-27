@@ -1,0 +1,41 @@
+\chapter{Lexical Model for Low Resource Languages} \label{ch:chapter3}
+\section{Introduction}
+
+Natural Languages frequently a sparse distribution of words as they tend have few words that appear more and others that do not. This is called a power law distribution. 
+
+Statistical machine translation learns from the data that it is presented to. Distributions such as the present in natural languages, creates a knowledge void that is not easily filled.
+
+\section{The Lexical Model}
+The lexicon model was introduced by \citet{DBLP:journals/corr/abs-1710-01329}. This model consists in training a Feed Forward Network in parallel with an Attention Based Recurrent Neural Network.
+
+Their implementation is
+
+\section{Experimental design}\label{sec:experimentdesign}
+
+\subsection{Baselines} \label{sec:baselines}
+
+To be able to compare the lexical model with a robust baseline we selected a range of techniques widely used to improve performance. The selected techniques were:
+
+
+\subsubsection{Lexical model with small dataset}
+
+As a starting point we evaluated the performance of the Lexical model against a our baseline using a small data set. The 
+
+\subsubsection{Lexical model and a transfer learning with a bilingual dictionary}
+
+\subsubsection{Lexical model and a transfer learning with monolingual data}
+
+\subsection{Datasets} \label{sec:datasets}
+
+The datasets used for this dissertation are the TED english-german datased and the WMT17 English - German Task. We used as our validation data set the News-crawl 2013 and our test data set the News-crawl 2017.
+
+\subsubsection{TED talks parallel corpus}
+
+\subsubsection{WMT17 corpus}
+
+\subsubsection{WMT17 corpus} \citep*{bojar2017d1}
+
+\section{Experimental Results}
+
+
+\section{Analysis}

@@ -1,0 +1,59 @@
+%% Sample chapter file, for use in a thesis.
+%% Don't forget to put the \chapter{...} header onto each file.
+
+\chapter{Datasets and Experimental Setup}\label{ch:chapter3}
+
+The translation task was centered in the English - German language pair. In subsections \ref{subsec:TEDdatasets} and \ref{subsec:datasets} we will describe the Datasets used during our experimentation phase. In section \ref{sec:experimentalsetup} we will describe the 
+
+\section{Datasets}\label{sec:datasets}
+
+\subsection{TED lecture transcription task}\label{subsec:TEDdatasets}
+The initial experiments were carried out with a limited size Data set introduced by \citet*{TIEDEMANN12.463}. The data set consists o
+\subsection{WMT17 competition}\label{subsec:datasets}
+\citep{sennrich-EtAl:2017:WMT}
+\section{Experimental Setup} \label{sec:experimentalsetup}
+
+In this section we will describe the general approaches we will use as our baseline as well as the new elements we will incorporate to them. We will use the Nematus, which is an Open-source Neural Machine Translation framework \citep*{sennrich-EtAl:2017:EACLDemo}. 
+
+\subsection{Nematus Neural Machine Translation Framework}
+The Nematus framework is an attentional encoder-decoder project from the University of Edinburgh. 
+
+We will add a simple Feed Forward Neural Network (FFNN), a Lexical Model, to each of the previously mentioned approaches. To provide more insight on them, the approaches will be described in more detail in the following subsections.
+
+\subsection{Subword Units}
+
+The sub-word units approach proposed by \citet{DBLP:journals/corr/SennrichHB15} obtains sub-word representations by splitting words into its morphemes which allows the network learn compounding and transliteration. 
+
+\subsubsection{Byte Pair Encoding Subword Units}
+
+In the same fashion, Byte Pair Encoding is an approach that allows us to represent word as a sequence of characters, plus a special end-of-word symbol \citep{DBLP:journals/corr/SennrichHB15}. This technique enables us to generate different versions of the word at training time which gives us more novel contexts.
+
+With these two techniques, we will be able to answer two of our research questions. First, we will validate whether the Lexical model improves translation quality. Additionaly, we will be able to verify how does it interact with other techniques aimed to address the rare word problem.
+
+%\subsection{Learning from bilingual lexicons}
+\subsection{Monolingual Pre-training}
+
+ Inspired in the work published by \citet*{DBLP:journals/corr/ZophYMK16}, training on a parallel vocabulary prior to performing training on our parallel corpus can help us improve translation quality. Since for this research we lack from a bilingual dictionary corpus, we will  perform pre-training in short sentences to validate the behavior of the Lexical model with this approach.
+ 
+ This test should help us answering our first and third research question. Does the lexicon model help us improve translation quality? and how does it interact with other techniques that handle rare words.
+ 
+ 
+ The three baseline systems mentioned in the previous sections, as well as the three Lexical Model approach will be pre-trained using one-word sentences. The purpose of this pre-training step is to verify if the Lexical Model does learns from individual words as stated by \citet{DBLP:journals/corr/abs-1710-01329}, the impact of this step would yield a worse performance in our baseline model which will not have previous words in the sentence to relate the current word to. On the other hand, with this previous training step, the Lexical model should still achieve good translation rates provided it is learning from individual words. This test will help us answer our second research question and validate whether the Lexical model learns from individual words.
+
+ Regarding our data, we will be mostly using the German-English language pair for the high resource pair and if time allows, for the low resource language we will use the normalized version of the Axolotl corpus, presented by \citet*{gutierrez2016axolotl}. Regarding our data size, we will limit our vocabulary size to 50,000 word types as previous work has shown that this is a good vocabulary size for Neural Machine Translation architectures to obtain good accuracy \citep*{DBLP:journals/corr/LHostisGA16}. It is important to note that neural machine translation conveys a high computational complexity \citep{DBLP:journals/corr/MiWI16}, this means that with larger vocabularies the system is processing time will increase. This is of interest to this project because it could mean that training each experiment in the large resource language pair could take a long time. Since there is a time constraint for this project of roughly two and a half months, it might be necessary to further reduce the input size even more than 50k word types. This should reduce the required training and evaluation time to be able to run all the experiments as well as leaving a reasonable time frame available to re-test in case it is necessary.
+Once the neural network architecture is fully constructed, we will use a couple of techniques generally used in Machine Translation to score automatic translation performance which will allow us to test the performance of each the architectures. These techniques will be described in the following section.
+
+The three approaches previously described will be evaluated to validate whether they can gain knowledge from individual words to improve translation quality. 
+
+To evaluate the hypothesis, we will consider two pieces of information. First we will take into consideration the final translation performance in each of our models. To do this, we will consider two automatic translation metrics. One will be the ChRF metric, which is an automatic translation method proposed by \citet*{popovic2015chrf}. ChRF is a language-independent, tokenisation-independent metric. This metric  has been shown to perform better than all standard metric for about 70-80$\%$ of texts \citep{popovic2015chrf}. The other metric we will use is the BLEU metric \citep*{Papineni02bleu:a}. We will use it to compare our results to other works which have used the metric as well.
+
+Additional to the final translation accuracy, we will measure the performance of the models on rare words by examining the low frequency unigram F-score where we will plot the F1 scores of target side words sorted by their frequency. The F-score is a widely used metric to evaluate Natural Language Processing systems \citep*{Melamed:2003:PRM:1073483.1073504}.
+
+The output of this project will be the evaluation of a neural network architecture for machine translation that can be used to obtain better translation performance for lexicon without context. We will validate through several test runs on three different baseline systems to which the proposed Lexical model will be added to. Additionally, the initial test will be carried out in a high resource pair English - German and if time allows the architecture will be tested in a low resource language environment to further validate if the proposed architecture achieves improvement in such conditions. If the evaluation returns positive results, the architecture would be suited for this task as well.
+
+\citep*{cettoloEtAl:EAMT2012} 
+\subsection{Deep Architectures for Neural Machine Translation}
+
+Deep learning has shown great improvement in varied machine learning tasks. In this fashion, in the area of Machine Translation  \citet*{DBLP:journals/corr/BaroneHSHB17} proposed stacking Recurrent layers to improve the machine translations architectures.
+
+\section{Summary}

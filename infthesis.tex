@@ -1,0 +1,160 @@
+%%%%%%%%%%%%%%%%%%%%%%%%
+%% Sample use of the infthesis class to prepare a thesis. This can be used as 
+%% a template to produce your own thesis.
+%%
+%% The title, abstract and so on are taken from Martin Reddy's csthesis class
+%% documentation.
+%%
+%% MEF, October 2002
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%
+%% Load the class. Put any options that you want here (see the documentation
+%% for the list of options). The following are samples for each type of
+%% thesis:
+%%
+%% Note: you can also specify any of the following options:
+%%  logo: put a University of Edinburgh logo onto the title page
+%%  frontabs: put the abstract onto the title page
+%%  deptreport: produce a title page that fits into a Computer Science
+%%      departmental cover [not sure if this actually works]
+%%  singlespacing, fullspacing, doublespacing: choose line spacing
+%%  oneside, twoside: specify a one-sided or two-sided thesis
+%%  10pt, 11pt, 12pt: choose a font size
+%%  centrechapter, leftchapter, rightchapter: alignment of chapter headings
+%%  sansheadings, normalheadings: headings and captions in sans-serif
+%%      (default) or in the same font as the rest of the thesis
+%%  [no]listsintoc: put list of figures/tables in table of contents (default:
+%%      not)
+%%  romanprepages, plainprepages: number the preliminary pages with Roman
+%%      numerals (default) or consecutively with the rest of the thesis
+%%  parskip: don't indent paragraphs, put a blank line between instead
+%%  abbrevs: define a list of useful abbreviations (see documentation)
+%%  draft: produce a single-spaced, double-sided thesis with narrow margins
+%%
+%% For a PhD thesis -- you must also specify a research institute:
+%\documentclass[phd,ilcc,twoside]{infthesis}
+
+%% For an MPhil thesis -- also needs an institute
+% \documentclass[mphil,ianc]{infthesis}
+
+%% MSc by Research, which also needs an institute
+% \documentclass[mscres,irr]{infthesis}
+
+%% Taught MSc -- specify a particular degree instead. If none is specified,
+%% "MSc in Informatics" is used.
+% \documentclass[msc,cogsci]{infthesis}
+\documentclass[msc,logo,12pt,A4]{infthesis}  % for the MSc in Informatics
+
+%% Master of Informatics (5 year degree)
+% \documentclass[minf]{infthesis}
+
+%% Undergraduate project -- specify the degree course and project type
+%% separately
+% \documentclass[bsc]{infthesis}
+% \course{Artificial Intelligence and Psychology}
+% \project{Fourth Year Project Report}
+
+%% Put any \usepackage commands you want to use right here; the following is 
+%% an example:
+\usepackage{natbib}
+% For subsections management
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{flafter}
+\usepackage{hyperref}
+\usepackage{apacite} 
+\setcounter{secnumdepth}{4}
+
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+%% Information about the title, etc.
+\title{Lexical Model for Low-resource Neural Machine Translation}
+\author{Erick Arturo Garza Jacinto}
+
+%% If the year of submission is not the current year, uncomment this line and 
+%% specify it here:
+% \submityear{1785}
+
+%% Optionally, specify the graduation month and year:
+ %\graduationdate{August 2018}
+
+%% Specify the abstract here.
+\abstract{%
+ In recent years, there has been interest in neural machine translation (NMT) \citep*{DBLP:journals/corr/abs-1709-07809}. This approach to machine translation has shown good results even surpassing phrase based translation systems \citep*{DBLP:journals/corr/BritzGLL17}. Even though this approach have given promising results, they still show poor performance when they handle rare words \citep*{DBLP:journals/corr/abs-1709-07809}. These being words that have very few occurrences in the training data. This causes these models to require a lot of input data to provide good quality translations. 
+  
+  In the past couple of years, there have been approaches aiming to improve the translation quality of these models by improving the way they handle or generalize rare words. Some of these  approaches aim to do so by reducing the algorithms' need for data in order to learn meaningful information from it \citep*{DBLP:journals/corr/MiWI16}, while others attempt to better handle unknown words or rare words. On this second trend, \citet{DBLP:journals/corr/JeanCMB14} improve performance by allowing their architecture to look up rare words in a dictionary while \citet{DBLP:journals/corr/SennrichHB15} use word pieces obtained through algorithms such as Byte Pair Encoding (BPE) to try to cover a broader range of words taking into account their roots and morphology variations.
+  
+  %(\citealp{DBLP:journals/corr/JeanCMB14, DBLP:journals/corr/GulcehreANZB16, DBLP:journals/corr/LuongSLVZ14, DBLP:journals/corr/GuLLL16, DBLP:journals/corr/SennrichHB15}). From these second type of approaches, it is important to highlight two uses a dictionary to handle rare words 
+  %presented a method to try to alleviate the huge amount of data the whole vocabulary represents by narrowing down the vocabulary to a sentence or batch scope size. 
+  
+  Considering previous work in the Neural Machine Translation field, I propose investigating the real learning improvement of the lexical model within a sequence-to-sequence model as presented by \citet*{DBLP:journals/corr/abs-1710-01329}. In contrast with other presented  works, the data this model needs does not require much pre-processing while, according to the authors, it still provides good translation improvements. This approach, has not been properly compared to standard approaches such as Byte Pair Encoding (BPE). Our hypothesis is that adding the Lexical model to the architecture as proposed by \citet{DBLP:journals/corr/abs-1710-01329} does help improve the translation quality. To prove this method's appropriateness, we will evaluate first, whether it helps when used in conjunction with previous approaches to rare words such as BPE, second, whether the lexicon model helps in low-resource situations and third, whether it allows us to leverage bilingual lexicons. This will be tested on three different architectures on which we will investigate if the Lexical Model provides an improvement. If the architecture shows the expected translation enhancement in contrast to the baseline architectures, this approach could be considered a novel machine translation architecture which in turn could help improve machine translation model's accuracy even in low-resource data conditions.
+}
+
+%% Now we start with the actual document.
+\begin{document}
+
+%% First, the preliminary pages
+\begin{preliminary}
+
+%% This creates the title page
+\maketitle
+%% Acknowledgements
+\begin{acknowledgements}
+I would like to thank my dissertation supervisor Lexi Birch for believing in me and guiding me through this process. Also I would like to thank my parents for supporting me all the time.
+Finally, I would like to thank the State of Jalisco in Mexico for granting me the funding that enabled me to study at the University of Edinburgh.
+\end{acknowledgements}
+
+%% Next we need to have the declaration.
+\standarddeclaration
+
+%% Finally, a dedication (this is optional -- uncomment the following line if
+%% you want one).
+% \dedication{To my mummy.}
+
+%% Create the table of contents
+\tableofcontents
+ 
+%\listoffigures
+%\listoftables
+
+
+%% If you want a list of figures or tables, uncomment the appropriate line(s)
+% \listoffigures
+% \listoftables
+
+\end{preliminary}
+
+%%%%%%%%
+%% Include your chapter files here. See the sample chapter file for the basic
+%% format.
+
+\include{chap1}
+\include{chap2}
+\include{chap3}
+\include{chap4}
+%\include{chapimpr}
+%% ... etc ...
+
+%%%%%%%%
+%% Any appendices should go here. The appendix files should look just like the
+%% chapter files.
+%\appendix
+%\include{appendix1}
+%% ... etc...
+
+%% Choose your favourite bibliography style here.
+\bibliographystyle{apalike}
+
+%% If you want the bibliography single-spaced (which is allowed), uncomment
+%% the next line.
+% \singlespace
+
+%% Specify the bibliography file. Default is thesis.bib.
+\bibliography{thesis}
+
+%% ... that's all, folks!
+\end{document}
